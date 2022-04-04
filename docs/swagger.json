@@ -1,0 +1,43 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "User API documentation",
+        "contact": {}
+    },
+    "basePath": "/",
+    "paths": {
+        "/api/v1/films": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film service"
+                ],
+                "summary": "ListAllFilms",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/film.BaseRes"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "film.BaseRes": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

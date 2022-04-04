@@ -1,0 +1,27 @@
+basePath: /
+definitions:
+  film.BaseRes:
+    properties:
+      data: {}
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: User API documentation
+paths:
+  /api/v1/films:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/film.BaseRes'
+      summary: ListAllFilms
+      tags:
+      - Film service
+swagger: "2.0"
