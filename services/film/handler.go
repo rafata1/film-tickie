@@ -21,7 +21,7 @@ func NewHandler() *Handler {
 // @Tags         Film service
 // @Accept       json
 // @Produce      json
-// @Success      200 {object}
+// @Success      200
 // @Router       /api/v1/films [get]
 func (h *Handler) ListFilms(c *gin.Context) {
     log.Printf("here")

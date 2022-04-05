@@ -20,22 +20,8 @@
                 "summary": "ListAllFilms",
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/film.BaseRes"
-                        }
+                        "description": ""
                     }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "film.BaseRes": {
-            "type": "object",
-            "properties": {
-                "data": {},
-                "message": {
-                    "type": "string"
                 }
             }
         }

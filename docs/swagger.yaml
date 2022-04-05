@@ -1,11 +1,4 @@
 basePath: /
-definitions:
-  film.BaseRes:
-    properties:
-      data: {}
-      message:
-        type: string
-    type: object
 info:
   contact: {}
   title: User API documentation
@@ -18,9 +11,7 @@ paths:
       - application/json
       responses:
         "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/film.BaseRes'
+          description: ""
       summary: ListAllFilms
       tags:
       - Film service
