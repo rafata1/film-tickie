@@ -1,12 +1,45 @@
 basePath: /
+definitions:
+  auth.CheckOTPRequest:
+    properties:
+      otp:
+        type: string
+      phone:
+        type: string
+    type: object
 info:
   contact: {}
   title: User API documentation
 paths:
+  /api/v1/auth/check_otp:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: CheckOTP
+        in: body
+        name: checkOTPRequest
+        required: true
+        schema:
+          $ref: '#/definitions/auth.CheckOTPRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: Check otp with phone number, return jwt token
+      tags:
+      - Auth service
   /api/v1/films:
     get:
       consumes:
       - application/json
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:

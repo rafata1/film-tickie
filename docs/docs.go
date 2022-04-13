@@ -16,6 +16,36 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/api/v1/auth/check_otp": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth service"
+                ],
+                "summary": "Check otp with phone number, return jwt token",
+                "parameters": [
+                    {
+                        "description": "CheckOTP",
+                        "name": "checkOTPRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/auth.CheckOTPRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/api/v1/films": {
             "get": {
                 "consumes": [
@@ -28,10 +58,32 @@ const docTemplate = `{
                     "Film service"
                 ],
                 "summary": "ListAllFilms",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": ""
                     }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "auth.CheckOTPRequest": {
+            "type": "object",
+            "properties": {
+                "otp": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
                 }
             }
         }

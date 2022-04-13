@@ -7,6 +7,7 @@ import (
     "github.com/swaggo/gin-swagger/swaggerFiles"
     "github.com/templateOfService/connectors/mysql"
     _ "github.com/templateOfService/docs"
+    "github.com/templateOfService/services/auth"
     "github.com/templateOfService/services/film"
     "log"
     "os"
@@ -16,8 +17,12 @@ func initRouter() *gin.Engine {
     gin.SetMode(os.Getenv("GIN_MODE"))
     router := gin.Default()
 
+    authHandler := auth.NewHandler()
+    router.POST("/api/v1/auth/check_otp", authHandler.CheckOTP)
+
     filmHandler := film.NewHandler()
     router.GET("/api/v1/films", filmHandler.ListFilms)
+
     router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
     return router
 }
