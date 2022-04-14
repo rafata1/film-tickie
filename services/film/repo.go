@@ -28,3 +28,11 @@ func (r *Repo) ListFilms() ([]models.Film, error) {
     }
     return res, err
 }
+
+var listFilmsByCategoryQuery = "SELECT * FROM films WHERE category = ?"
+
+func (r *Repo) ListFilmsByCategory(category string) ([]models.Film, error) {
+    var res []models.Film
+    err := r.conn.Select(&res, listFilmsByCategoryQuery, category)
+    return res, err
+}

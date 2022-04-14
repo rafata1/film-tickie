@@ -48,12 +48,31 @@
                     "Film service"
                 ],
                 "summary": "ListAllFilms",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/films/{category}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Film service"
+                ],
+                "summary": "ListFilmsByCategory",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Authorization",
-                        "name": "Authorization",
-                        "in": "header",
+                        "description": "action",
+                        "name": "category",
+                        "in": "path",
                         "required": true
                     }
                 ],

@@ -22,6 +22,7 @@ func initRouter() *gin.Engine {
 
     filmHandler := film.NewHandler()
     router.GET("/api/v1/films", filmHandler.ListFilms)
+    router.GET("/api/v1/films/:category", filmHandler.ListFilmsByCategory)
 
     router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
     return router

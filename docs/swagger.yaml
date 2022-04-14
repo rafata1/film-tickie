@@ -34,10 +34,22 @@ paths:
     get:
       consumes:
       - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: ListAllFilms
+      tags:
+      - Film service
+  /api/v1/films/{category}:
+    get:
+      consumes:
+      - application/json
       parameters:
-      - description: Authorization
-        in: header
-        name: Authorization
+      - description: action
+        in: path
+        name: category
         required: true
         type: string
       produces:
@@ -45,7 +57,7 @@ paths:
       responses:
         "200":
           description: ""
-      summary: ListAllFilms
+      summary: ListFilmsByCategory
       tags:
       - Film service
 swagger: "2.0"
