@@ -60,4 +60,25 @@ paths:
       summary: ListFilmsByCategory
       tags:
       - Film service
+  /api/v1/schedules:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: cinemaId
+        in: query
+        name: cinemaId
+        type: integer
+      - description: filmId
+        in: query
+        name: filmId
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: ListSchedules
+      tags:
+      - Schedule service
 swagger: "2.0"

@@ -3,7 +3,7 @@ package models
 import "time"
 
 type Film struct {
-    ID          int       `db:"id"`
+    Id          int       `db:"id"`
     Name        string    `db:"name"`
     Description string    `db:"description"`
     Length      int       `db:"length"`

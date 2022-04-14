@@ -1,4 +1,4 @@
-package film
+package schedule
 
 type BaseRes struct {
     Message string      `json:"message"`

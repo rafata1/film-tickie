@@ -9,6 +9,7 @@ import (
     _ "github.com/templateOfService/docs"
     "github.com/templateOfService/services/auth"
     "github.com/templateOfService/services/film"
+    "github.com/templateOfService/services/schedule"
     "log"
     "os"
 )
@@ -23,6 +24,9 @@ func initRouter() *gin.Engine {
     filmHandler := film.NewHandler()
     router.GET("/api/v1/films", filmHandler.ListFilms)
     router.GET("/api/v1/films/:category", filmHandler.ListFilmsByCategory)
+
+    scheduleHandler := schedule.NewHandler()
+    router.GET("/api/v1/schedules", scheduleHandler.ListSchedules)
 
     router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
     return router

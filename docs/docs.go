@@ -92,6 +92,39 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/api/v1/schedules": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Schedule service"
+                ],
+                "summary": "ListSchedules",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "cinemaId",
+                        "name": "cinemaId",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "filmId",
+                        "name": "filmId",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
         }
     },
     "definitions": {
