@@ -8,6 +8,7 @@ import (
     "github.com/templateOfService/connectors/mysql"
     _ "github.com/templateOfService/docs"
     "github.com/templateOfService/services/auth"
+    "github.com/templateOfService/services/cinema"
     "github.com/templateOfService/services/film"
     "github.com/templateOfService/services/schedule"
     "log"
@@ -24,6 +25,10 @@ func initRouter() *gin.Engine {
     filmHandler := film.NewHandler()
     router.GET("/api/v1/films", filmHandler.ListFilms)
     router.GET("/api/v1/films/:category", filmHandler.ListFilmsByCategory)
+
+    cinemaHandler := cinema.NewHandler()
+    router.GET("/api/v1/cinemas", cinemaHandler.ListCinemas)
+    router.GET("/api/v1/cinema/:id", cinemaHandler.GetCinema)
 
     scheduleHandler := schedule.NewHandler()
     router.GET("/api/v1/schedules", scheduleHandler.ListSchedules)

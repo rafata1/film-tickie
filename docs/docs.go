@@ -46,6 +46,53 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/cinema/{id}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cinema service"
+                ],
+                "summary": "GetCinemaById",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "cinema id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/cinemas": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cinema service"
+                ],
+                "summary": "ListAllCinemas",
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/api/v1/films": {
             "get": {
                 "consumes": [
