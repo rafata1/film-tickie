@@ -12,6 +12,14 @@ func NewService() *Service {
     }
 }
 
+func (s *Service) GetFilmById(id int) (*models.Film, error) {
+    film, err := s.repo.GetFilmById(id)
+    if err != nil {
+        return nil, ErrQueryDB
+    }
+    return film, nil
+}
+
 func (s *Service) ListFilms() ([]models.Film, error) {
     films, err := s.repo.ListFilms()
     if err != nil {

@@ -3,6 +3,7 @@ package film
 import (
     "github.com/gin-gonic/gin"
     "net/http"
+    "strconv"
 )
 
 type Handler struct {
@@ -13,6 +14,45 @@ func NewHandler() *Handler {
     return &Handler{
         service: NewService(),
     }
+}
+
+func ParseInt(s string) (int, error) {
+    if len(s) == 0 {
+        return 0, nil
+    }
+    number, err := strconv.Atoi(s)
+    return number, err
+}
+
+// GetFilmById godoc
+// @Summary      GetFilmById
+// @Tags         Film service
+// @Accept       json
+// @Produce      json
+// @Success      200
+// @Router       /api/v1/film/{id} [get]
+// @Param id path integer true "id"
+func (h *Handler) GetFilmById(c *gin.Context) {
+    filmId, err := ParseInt(c.Param("id"))
+    if err != nil {
+        c.JSON(http.StatusBadRequest, BaseRes{
+            Message: "invalid film id",
+        })
+        return
+    }
+    film, err := h.service.GetFilmById(filmId)
+    if err != nil {
+        c.JSON(http.StatusOK, BaseRes{
+            Message: "internal error",
+            Data:    err.Error(),
+        })
+        return
+    }
+    res := BaseRes{
+        Message: "success",
+        Data:    film,
+    }
+    c.JSON(http.StatusOK, res)
 }
 
 // ListFilms godoc

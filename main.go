@@ -24,6 +24,7 @@ func initRouter() *gin.Engine {
 
     filmHandler := film.NewHandler()
     router.GET("/api/v1/films", filmHandler.ListFilms)
+    router.GET("/api/v1/film/:id", filmHandler.GetFilmById)
     router.GET("/api/v1/films/:category", filmHandler.ListFilmsByCategory)
 
     cinemaHandler := cinema.NewHandler()
