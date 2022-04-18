@@ -85,7 +85,15 @@ const docTemplate = `{
                 "tags": [
                     "Cinema service"
                 ],
-                "summary": "ListAllCinemas",
+                "summary": "ListCinemas",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "film id",
+                        "name": "filmId",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": ""

@@ -15,7 +15,15 @@ func NewService() *Service {
     }
 }
 
-func (s *Service) ListCinemas() ([]models.Cinema, error) {
+func (s *Service) ListCinemas(filmId int) ([]models.Cinema, error) {
+    if filmId > 0 {
+        cinemas, err := s.repo.ListCinemasByFilmId(filmId)
+        if err != nil {
+            return nil, ErrQueryDB
+        }
+        return cinemas, nil
+    }
+
     cinemas, err := s.repo.ListCinemas()
     if err != nil {
         fmt.Printf("error listing cinemas: %s\n", err.Error())

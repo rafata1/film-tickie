@@ -31,3 +31,15 @@ func (r *Repo) GetCinemaById(id int) (*models.Cinema, error) {
     err := r.conn.Get(&res, getCinemaByIdQuery, id)
     return &res, err
 }
+
+var listCinemasByFilmIdQuery = `
+    SELECT c.id, c.name, c.description, c.address, c.created_at, c.updated_at FROM cinemas c
+    JOIN schedules s ON c.id = s.cinema_id
+    WHERE s.film_id = ? AND s.from_time > NOW();
+`
+
+func (r *Repo) ListCinemasByFilmId(filmId int) ([]models.Cinema, error) {
+    var res []models.Cinema
+    err := r.conn.Select(&res, listCinemasByFilmIdQuery, filmId)
+    return res, err
+}

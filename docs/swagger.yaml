@@ -52,12 +52,17 @@ paths:
     get:
       consumes:
       - application/json
+      parameters:
+      - description: film id
+        in: query
+        name: filmId
+        type: integer
       produces:
       - application/json
       responses:
         "200":
           description: ""
-      summary: ListAllCinemas
+      summary: ListCinemas
       tags:
       - Cinema service
   /api/v1/film/{id}:

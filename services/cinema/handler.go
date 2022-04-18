@@ -17,14 +17,24 @@ func NewHandler() *Handler {
 }
 
 // ListCinemas godoc
-// @Summary      ListAllCinemas
+// @Summary      ListCinemas
 // @Tags         Cinema service
 // @Accept       json
 // @Produce      json
 // @Success      200
 // @Router       /api/v1/cinemas [get]
+// @Param filmId query integer false "film id"
 func (h *Handler) ListCinemas(c *gin.Context) {
-    cinemas, err := h.service.ListCinemas()
+    filmId, err := ParseInt(c.Query("filmId"))
+    if err != nil {
+        c.JSON(http.StatusBadRequest, BaseRes{
+            Message: "invalid film id",
+            Data:    err.Error(),
+        })
+        return
+    }
+
+    cinemas, err := h.service.ListCinemas(filmId)
     if err != nil {
         c.JSON(http.StatusOK, BaseRes{
             Message: "internal error",
