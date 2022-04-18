@@ -33,7 +33,7 @@ func (r *Repo) GetCinemaById(id int) (*models.Cinema, error) {
 }
 
 var listCinemasByFilmIdQuery = `
-    SELECT c.id, c.name, c.description, c.address, c.created_at, c.updated_at FROM cinemas c
+    SELECT c.id, c.name, c.description, c.address, c.image_urls, c.created_at, c.updated_at FROM cinemas c
     JOIN schedules s ON c.id = s.cinema_id
     WHERE s.film_id = ? AND s.from_time > NOW();
 `
