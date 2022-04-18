@@ -1,6 +1,7 @@
 package cinema
 
 import (
+    "fmt"
     "github.com/jmoiron/sqlx"
     "github.com/templateOfService/connectors/mysql"
     "github.com/templateOfService/models"
@@ -41,5 +42,8 @@ var listCinemasByFilmIdQuery = `
 func (r *Repo) ListCinemasByFilmId(filmId int) ([]models.Cinema, error) {
     var res []models.Cinema
     err := r.conn.Select(&res, listCinemasByFilmIdQuery, filmId)
+    if err != nil {
+        fmt.Println(err)
+    }
     return res, err
 }
