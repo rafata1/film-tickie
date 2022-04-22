@@ -12,6 +12,25 @@ definitions:
       name:
         type: string
     type: object
+  schedule.CancelSeatsRequest:
+    properties:
+      schedule_id:
+        type: integer
+    type: object
+  schedule.ConfirmSeatsRequest:
+    properties:
+      schedule_id:
+        type: integer
+    type: object
+  schedule.HoldSeatsRequest:
+    properties:
+      schedule_id:
+        type: integer
+      seats:
+        items:
+          type: integer
+        type: array
+    type: object
 info:
   contact: {}
   title: User API documentation
@@ -143,6 +162,101 @@ paths:
       summary: ListSchedules
       tags:
       - Schedule service
+  /api/v1/ticket/:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: schedule id
+        in: query
+        name: scheduleId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: get seats status of schedule
+      tags:
+      - Ticket service
+  /api/v1/ticket/cancel:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: cancel seats
+        in: body
+        name: CancelSeatsRequest
+        required: true
+        schema:
+          $ref: '#/definitions/schedule.CancelSeatsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: user cancel payment then call this api
+      tags:
+      - Ticket service
+  /api/v1/ticket/confirm:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: confirm after payment
+        in: body
+        name: ConfirmSeatsRequest
+        required: true
+        schema:
+          $ref: '#/definitions/schedule.ConfirmSeatsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: confirm seats after payment
+      tags:
+      - Ticket service
+  /api/v1/ticket/hold:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: hold seats
+        in: body
+        name: HoldSeatsRequest
+        required: true
+        schema:
+          $ref: '#/definitions/schedule.HoldSeatsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: hold seats for 10 minutes before payment
+      tags:
+      - Ticket service
   /api/v1/user:
     post:
       consumes:

@@ -205,6 +205,152 @@
                 }
             }
         },
+        "/api/v1/ticket/": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Ticket service"
+                ],
+                "summary": "get seats status of schedule",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "schedule id",
+                        "name": "scheduleId",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/ticket/cancel": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Ticket service"
+                ],
+                "summary": "user cancel payment then call this api",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "cancel seats",
+                        "name": "CancelSeatsRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/schedule.CancelSeatsRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/ticket/confirm": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Ticket service"
+                ],
+                "summary": "confirm seats after payment",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "confirm after payment",
+                        "name": "ConfirmSeatsRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/schedule.ConfirmSeatsRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/v1/ticket/hold": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Ticket service"
+                ],
+                "summary": "hold seats for 10 minutes before payment",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Authorization",
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "description": "hold seats",
+                        "name": "HoldSeatsRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/schedule.HoldSeatsRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/api/v1/user": {
             "post": {
                 "consumes": [
@@ -260,6 +406,36 @@
             "properties": {
                 "name": {
                     "type": "string"
+                }
+            }
+        },
+        "schedule.CancelSeatsRequest": {
+            "type": "object",
+            "properties": {
+                "schedule_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "schedule.ConfirmSeatsRequest": {
+            "type": "object",
+            "properties": {
+                "schedule_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "schedule.HoldSeatsRequest": {
+            "type": "object",
+            "properties": {
+                "schedule_id": {
+                    "type": "integer"
+                },
+                "seats": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 }
             }
         }
