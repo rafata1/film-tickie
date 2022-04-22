@@ -200,6 +200,12 @@ const docTemplate = `{
                         "description": "filmId",
                         "name": "filmId",
                         "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "filter by date, ex: 2018-01-20",
+                        "name": "onDate",
+                        "in": "query"
                     }
                 ],
                 "responses": {

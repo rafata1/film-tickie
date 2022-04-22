@@ -126,6 +126,10 @@ paths:
         in: query
         name: filmId
         type: integer
+      - description: 'filter by date, ex: 2018-01-20'
+        in: query
+        name: onDate
+        type: string
       produces:
       - application/json
       responses:
