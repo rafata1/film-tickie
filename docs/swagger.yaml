@@ -7,6 +7,11 @@ definitions:
       phone:
         type: string
     type: object
+  auth.UpdateUserInfoRequest:
+    properties:
+      name:
+        type: string
+    type: object
 info:
   contact: {}
   title: User API documentation
@@ -138,4 +143,28 @@ paths:
       summary: ListSchedules
       tags:
       - Schedule service
+  /api/v1/user:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: update user info request
+        in: body
+        name: UpdateUserInfoRequest
+        required: true
+        schema:
+          $ref: '#/definitions/auth.UpdateUserInfoRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: update user info
+      tags:
+      - Profile service
 swagger: "2.0"
